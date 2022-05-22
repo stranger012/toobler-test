@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+<title>Home</title>
+<style>
+    input[type=submit]{
+        padding: 6px 20px;
+        background-color: aquamarine;
+    }
+    .box{
+        background-color: rgb(239, 249, 212);
+        padding: 20px;
+    }
+    .button{
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body  style="background-color: rgb(233, 253, 133) !important ;"> 
+    <div>
+        {% include 'navbar.html'  %}
+        <div>
+            <center>
+                <div class="box"> 
+                    <h2>Add message</h2> 
+                    <form action="{% url 'add_message' %}" method="post">
+                        {% csrf_token %}
+                        <div>
+                            <textarea name="content" rows="10" cols="40" required></textarea>  
+                        </div>
+                        <div class="button">
+                            <input type="submit" value="Add">
+                        </div>
+                    </form> 
+                </div>    
+            </center>
+        </div>
+    </div>
+</body>
+</html>
+
+

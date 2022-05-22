@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+<title>Register</title>
+<style>
+    input[type=text], input[type=password]{
+        width: 50%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+    } 
+    input[type=submit]{
+        padding: 6px 20px;
+        background-color: aquamarine;
+    }
+    .register-box{
+        background-color: rgb(239, 249, 212); 
+        margin: 100px auto;
+        max-width: 700px;
+        padding: 30px;
+    }
+    .footer{
+        padding: 30px 0;
+    }
+</style>
+</head>
+<body  style="background-color: rgb(233, 253, 133) !important ;">
+
+<br>
+<br>	
+<div>
+    <center>
+        <div class="register-box"> 
+            <h2>Sign Up</h2> 
+            <form action="{% url 'register' %}" method="post">
+                {% csrf_token %}
+                <input type="text"  name="name" placeholder="Name" required=""><br><br>
+                <input type="text"  name="username" placeholder="Username" required=""><br><br>
+                <input type="password"  name="password" placeholder="Password" required=""><br><br><br>
+                <input type="submit" value="Sign Up">
+            </form>
+            <div class="footer"> 
+                Already have an account? <a href="{% url 'index' %}">Sign In</a>
+            </div>
+        </div>
+    </center>
+</div>
+</body>
+</html>

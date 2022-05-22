@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+<title>Edit</title>
+<style>
+    input[type=submit]{
+        padding: 6px 20px;
+        background-color: aquamarine;
+    }
+</style>
+</head>
+<body  style="background-color: rgb(233, 253, 133) !important ;">
+<br>
+<br>	
+<div>
+    {% include 'navbar.html'  %}
+<div>
+    <center>
+        <div style="background-color: rgb(239, 249, 212); ">
+            <br>
+            <h2>Edit message</h2>
+            <br>
+            <form action="{% url 'edit_msg' %}" method="post">
+                {% csrf_token %}
+                <input type="text" value="{{obj.id}}" name="id" hidden>  
+                <textarea name="content" rows="10" cols="30" required>{{obj.content}}</textarea>
+                <br><br>
+                    <div></div>
+                    <input type="submit" value="Update">
+            </form>
+            <br>
+        </div>    
+    </center>
+	
+</div>
+</div>
+</body>
+</html>
+
+

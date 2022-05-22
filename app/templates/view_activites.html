@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+<title>Home</title>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<style>
+    td{
+        background-color: rgb(232, 247, 184);
+        padding: 0 10px;       
+    }
+    .box{
+        background-color: rgb(239, 249, 212);
+        padding: 20px;
+    }
+</style>
+</head>
+<body  style="background-color: rgb(233, 253, 133) !important ;">
+<br>
+<br>	
+<div>
+    {% include 'navbar.html'  %}
+<div >
+    <center>
+        <div class="box">    
+            <h2>Recent Activities</h2>
+            <table  width="50%">
+                <tbody id="tableData" style="font-size:large">
+                    {% for i in obj %}
+                    <tr>
+                        <td><p>  &nbsp;{{i.content}}</p></td>  
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </center>
+</div>
+</div>
+<script>
+    var ajax_call = function() {
+        id=0
+        $.ajax({
+            url:"/activity/",
+            datatype:'json',
+            data:{'id':id},
+            success:function(response)
+            {
+                EnterToTable(response.data);  
+            }
+        });
+      };
+      var interval = 1000 * 60 * .1; 
+      setInterval(ajax_call, interval);   
+      function EnterToTable(responseData) {
+        var mainObj = JSON.parse(responseData);
+        var k = '';
+        for(i = 0;i < mainObj.length; i++){
+            k+= '<tr>';
+            k+= '<td><p> &nbsp;' + mainObj[i]["fields"]["content"] + '</p></td>';
+            k+= '</tr>';
+        }
+        document.getElementById('tableData').innerHTML = k;
+    }                  
+</script>   
+
+</body>
+</html>
+
+
